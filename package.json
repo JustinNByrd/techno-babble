@@ -1,0 +1,24 @@
+{
+  "name": "techno-babble",
+  "version": "1.0.0",
+  "description": "Posts and comments about all things technology.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinNByrd/techno-babble.git"
+  },
+  "author": "Justin Byrd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustinNByrd/techno-babble/issues"
+  },
+  "homepage": "https://github.com/JustinNByrd/techno-babble#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "sequelize": "^6.6.2"
+  }
+}
