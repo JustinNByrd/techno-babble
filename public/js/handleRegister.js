@@ -17,8 +17,12 @@ const handleRegister = async function(event) {
 		}
 	});
 
-	if (res.ok) window.status('OK!');
-	window.status('oops');
+	if (res.ok) {
+		window.location.replace('/login');
+	}
+	else {
+		alert('oops');
+	}
 }
 
 document.getElementById('register').addEventListener('submit', handleRegister);
