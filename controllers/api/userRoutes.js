@@ -21,4 +21,16 @@ router.post('/', async (req, res) => {
 	}
 });
 
+router.post('/login', async (req, res) => {
+	try {
+		passport.authenticate('local', {
+			successRedirect: '/dashboard',
+			failureRedirect: '/login',
+			failureFlash: true
+		 })(req, res, next);
+	} catch(err) {
+		res.status(500).json(err);
+	}
+});
+
 module.exports = router;
