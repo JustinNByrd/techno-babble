@@ -1,12 +1,28 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
+const passport = require('passport');
+const session = require('express-session');
+
+const app = express();
+
+app.use(
+	session({
+	  secret: 'toaster struddle',
+	  resave: true,
+	  saveUninitialized: true
+	})
+ );
 
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
+require('./config/passport')(passport);
+
+ // Passport middleware
+ app.use(passport.initialize());
+ app.use(passport.session());
 
 // use PORT env variable on heroku or 3000 local
-const app = express();
 const PORT = process.env.PORT || 3000;
 
 const hbs = exphbs.create({});
@@ -17,7 +33,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', '.hbs');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
