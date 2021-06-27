@@ -22,8 +22,8 @@ require('./config/passport')(passport);
  app.use(passport.initialize());
  app.use(passport.session());
 
-// use PORT env variable on heroku or 3000 local
-const PORT = process.env.PORT || 3000;
+// use PORT env variable on heroku or 3001 local
+const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({});
 
