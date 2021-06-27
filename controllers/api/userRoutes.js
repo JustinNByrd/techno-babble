@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res, next) => {
 	try {
-		passport.authenticate('local', {
+		await passport.authenticate('local', {
 			successRedirect: '/dashboard',
 			failureRedirect: '/login',
 		})(req, res, next);
