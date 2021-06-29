@@ -13,7 +13,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/dashboard', (req, res) => {
-	res.render('dashboard', { isAuthorized: req.session.isAuthenticated });
+	res.render('dashboard', { layout: 'authorized', isAuthorized: req.session.isAuthenticated });
 });
 
 module.exports = router;
