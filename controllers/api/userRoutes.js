@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const bcrypt = require("bcrypt");
 
 // get all users
 router.get('/', async (req, res) => {
@@ -23,8 +24,19 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	try {
-		console.log(req.body);
-	
+		const findUser = await User.findOne({ where: { username: req.body.username }});
+		if (!findUser) res.sendStatus(400);
+		const checkPassword = await bcrypt.compare(req.body.password, findUser.password);
+		if (!checkPassword) {
+			res.sendStatus(400);
+		} else {
+			req.session.save( () => {
+				req.session.userName = findUser.username;
+				req.session.email = findUser.email;
+				req.session.isAuthenticated = true;
+			});
+			res.sendStatus(200);
+		}
 	} catch (err) {
 		res.status(500).json(err);
 	}
