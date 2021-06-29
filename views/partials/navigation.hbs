@@ -2,7 +2,7 @@
 	{{#if isAuthorized}}
 		<button onclick="window.location.replace('/');">Home</button> 
 		<button onclick="window.location.replace('/Dashboard');">Dashboard</button> 
-		<button onclick="handleLogout();">Logout</button>
+		<button id="logOutButton">Logout</button>
 	{{else}}
 		<button onclick="window.location.replace('/register');">Register</button> 
 		<button onclick="window.location.replace('/login');">Login</button>
