@@ -31,11 +31,9 @@ router.post('/login', async (req, res) => {
 		if (!checkPassword) {
 			res.sendStatus(400);
 		} else {
-			req.session.save( () => {
-				req.session.userName = findUser.username;
-				req.session.email = findUser.email;
-				req.session.isAuthenticated = true;
-			});
+			req.session.userName = findUser.username;
+			req.session.email = findUser.email;
+			req.session.isAuthenticated = 'true';
 			res.sendStatus(200);
 		}
 	} catch (err) {
