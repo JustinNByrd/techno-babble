@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
-const passport = require('passport');
 const session = require('express-session');
 
 const app = express();
@@ -16,7 +15,6 @@ app.use(
 
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
-require('./config/passport')(passport);
 
  // Passport middleware
  app.use(passport.initialize());
