@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require("bcrypt");
+const { Store } = require('express-session');
 
 // get all users
 router.get('/', async (req, res) => {
@@ -40,6 +41,13 @@ router.post('/login', async (req, res) => {
 	} catch (err) {
 		res.status(500).json(err);
 	}
+});
+
+router.get('/logout', async (req, res) => {
+	// Store.destroy(req.sessionID, (err) => res.sendStatus(400));
+	req.session.destroy((err) => {
+		res.sendStatus(200);
+	});
 });
 
 module.exports = router;
