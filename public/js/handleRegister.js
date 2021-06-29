@@ -21,7 +21,7 @@ const handleRegister = async function(event) {
 		window.location.replace('/login');
 	}
 	else {
-		alert('oops');
+		alert('oops, please try again');
 	}
 }
 

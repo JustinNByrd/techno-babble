@@ -16,10 +16,6 @@ app.use(
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 
- // Passport middleware
- app.use(passport.initialize());
- app.use(passport.session());
-
 // use PORT env variable on heroku or 3001 local
 const PORT = process.env.PORT || 3001;
 

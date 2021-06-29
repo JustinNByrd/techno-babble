@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-const passport = require('passport');
 
 // get all users
 router.get('/', async (req, res) => {
@@ -22,12 +21,10 @@ router.post('/', async (req, res) => {
 	}
 });
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', async (req, res) => {
 	try {
-		await passport.authenticate('local', {
-			successRedirect: '/dashboard',
-			failureRedirect: '/login',
-		})(req, res, next);
+		console.log(req.body);
+	
 	} catch (err) {
 		res.status(500).json(err);
 	}
