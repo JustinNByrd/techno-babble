@@ -2,3 +2,21 @@
 	font-family: "8bit";
 	src: url(../fonts/Pixeboy-z8XGD.ttf);
 }
+
+body {
+	background-color: lightblue;
+}
+
+header {
+	text-align: center;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: white;
+	opacity: 85%;
+}
+
+h1 {
+	font-family: '8bit';
+	font-size: 6rem;
+	margin: 5px;
+}
