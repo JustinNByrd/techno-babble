@@ -18,6 +18,10 @@ Post.init(
 		body: {
 			type: DataTypes.STRING(512),
 			allowNull: false
+		},
+		user_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false
 		}
 	},
 	{

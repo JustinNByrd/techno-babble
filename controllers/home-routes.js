@@ -16,4 +16,8 @@ router.get('/dashboard', (req, res) => {
 	res.render('dashboard', { layout: 'authorized', isAuthorized: req.session.isAuthenticated });
 });
 
+router.get('/addPost', (req, res) => {
+	res.render('addPost', { layout: 'authorized', isAuthorized: req.session.isAuthenticated })
+});
+
 module.exports = router;

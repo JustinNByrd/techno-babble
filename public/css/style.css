@@ -30,3 +30,14 @@ button {
 	display: inline-block;
 	font-size: 16px;
 }
+
+textarea {
+	margin: 7px;
+	align-self: center;
+	width: 99%;
+	min-height: 250px;
+}
+
+#postTitle {
+	width: 50%;
+}

@@ -15,5 +15,4 @@ const handleLogout = async function(event) {
 	}
 }
 
-let logOutButtonEl = document.getElementById("logOutButton");
-logOutButtonEl.addEventListener("click", handleLogout);
+document.getElementById("logOutButton").addEventListener("click", handleLogout);
