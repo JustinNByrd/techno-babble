@@ -32,6 +32,7 @@ router.post('/login', async (req, res) => {
 			res.sendStatus(400);
 		} else {
 			req.session.userName = findUser.username;
+			req.session.userId = findUser.id;
 			req.session.email = findUser.email;
 			req.session.isAuthenticated = 'true';
 			res.sendStatus(200);
