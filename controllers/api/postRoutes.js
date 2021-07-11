@@ -9,6 +9,7 @@ router.post('/addPost', async (req, res) => {
 			body: req.body.postBody
 		};
 		const newPost = await Post.create(postData);
+		res.status(200).json(newPost);
 	} catch (err) {
 		console.log(err);
 		res.sendStatus(500);
