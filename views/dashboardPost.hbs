@@ -6,4 +6,7 @@
 <h3>{{post.title}}</h3>
 {{post.body}}
 <hr>
-<a href="./dashboardComment/{{post.id}}">Add Comment</a>
+<textarea id="postComment" placeholder="Comment"></textarea>
+<button id="newCommentSubmit">Submit</button>
+
+<script src="../js/handleNewComment.js"></script>
