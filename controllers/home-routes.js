@@ -2,7 +2,9 @@ const router = require('express').Router();
 const Post = require('../models/Post');
 
 router.get('/', async (req, res) => {
-	res.send('hello from /');
+	const posts = await Post.findAll();
+	const formattedPosts = posts.map((post) => post.get({ plain: true}));
+	res.render('home', { layout: 'main', isAuthorized: req.session.isAuthenticated, posts: formattedPosts});
 });
 
 router.get('/register', (req, res) => {
@@ -10,7 +12,7 @@ router.get('/register', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-	res.render('login');
+	res.render('login', { layout: 'main', isAuthorized: req.session.isAuthenticated});
 });
 
 router.get('/dashboard', async (req, res) => {

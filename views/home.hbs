@@ -1,0 +1,16 @@
+<header>
+	<h1>technoBabble</h1>
+	{{> navigation isAuthorized=isAuthorized }}
+</header>
+
+{{#each posts}}
+	<div>
+		{{#if isAuthorized}}
+			<a href="dashboardPost/{{this.id}}">{{this.title}}</a>
+		{{else}}
+			<a href="post/{{this.id}}">{{this.title}}</a>
+		{{/if}}
+		<p class="userPost">{{this.body}}</p>
+		<hr>
+	</div>
+{{/each}}
