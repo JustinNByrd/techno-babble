@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Post = require('../models/Post');
 
 router.get('/', async (req, res) => {
 	res.send('hello from /');
@@ -12,8 +13,29 @@ router.get('/login', (req, res) => {
 	res.render('login');
 });
 
-router.get('/dashboard', (req, res) => {
-	res.render('dashboard', { layout: 'authorized', isAuthorized: req.session.isAuthenticated });
+router.get('/dashboard', async (req, res) => {
+	try {
+		const userPosts = await Post.findAll({where: {user_id: req.session.userId}});
+		const posts = userPosts.map((post) => post.get({ plain: true}));
+		// const postsFormatted = posts.map((post) => {
+		// 	let formatCreatedDate = new Date(post.createdAt);
+		// 	formatCreatedDate = formatCreatedDate.toLocaleDateString('en-US');
+		// 	let formatModifiedDate = new Date(post.updatedAt);
+		// 	formatModifiedDate = formatModifiedDate.toLocaleDateString('en-US');
+		// 	return {
+		// 		id: post.id,
+		// 		title: post.title,
+		// 		body: post.body,
+		// 		user_id: post.user_id,
+		// 		createdAt: formatCreatedDate,
+		// 		updatedAt: formatModifiedDate
+		// 	};
+		// });
+		res.render('dashboard', { layout: 'authorized', isAuthorized: req.session.isAuthenticated, posts: posts });
+	} catch (err) {
+		console.log(err);
+		res.sendStatus(500);
+	}
 });
 
 router.get('/addPost', (req, res) => {

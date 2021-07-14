@@ -3,4 +3,12 @@
 	{{> navigation isAuthorized=isAuthorized }}
 </header>
 
+{{#each posts}}
+	<div>
+		<a href="dashboard/post/{{this.id}}">{{this.title}}</a>
+		<p class="userPost">{{this.body}}</p>
+		<hr>
+	</div>
+{{/each}}
+
 <button id="addPost" onclick="window.location.replace('/addPost');">Add Post</button>
