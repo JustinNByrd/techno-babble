@@ -38,6 +38,17 @@ router.get('/dashboard', async (req, res) => {
 	}
 });
 
+router.get('/dashboardPost/:id', async (req, res) => {
+	try {
+		const post = await Post.findOne({where: {id: req.params.id}});
+		const formattedPost = post.get({plain: true});
+		res.render('dashboardPost', { layout: 'authorizedPost', isAuthorized: req.session.isAuthenticated, post: formattedPost});
+	} catch (err) {
+		console.log(err);
+		res.sendStatus(500);
+	}
+});
+
 router.get('/addPost', (req, res) => {
 	res.render('addPost', { layout: 'authorized', isAuthorized: req.session.isAuthenticated })
 });

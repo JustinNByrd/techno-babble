@@ -1,0 +1,9 @@
+<header>
+	<h1>technoBabble</h1>
+	{{> navigation isAuthorized=isAuthorized }}
+</header>
+
+<h3>{{post.title}}</h3>
+{{post.body}}
+<hr>
+<a href="./dashboardComment/{{post.id}}">Add Comment</a>
