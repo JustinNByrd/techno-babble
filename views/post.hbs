@@ -1,0 +1,12 @@
+<header>
+	<h1>technoBabble</h1>
+	{{> navigation isAuthorized=isAuthorized }}
+</header>
+
+<h4>{{post.title}} By: {{post.username}}</h4>
+<p>{{post.body}}</p>
+<hr>
+{{#each comments}}
+	<h4>By: {{this.username}}</h4>
+	<p>{{this.body}}</p>
+{{/each}}

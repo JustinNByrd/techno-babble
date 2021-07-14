@@ -1,5 +1,9 @@
 const router = require('express').Router();
 const Post = require('../models/Post');
+const Comment = require('../models/Comment');
+const User = require('../models/User');
+const { QueryTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 router.get('/', async (req, res) => {
 	const posts = await Post.findAll();
@@ -45,6 +49,17 @@ router.get('/dashboardPost/:id', async (req, res) => {
 		const post = await Post.findOne({where: {id: req.params.id}});
 		const formattedPost = post.get({plain: true});
 		res.render('dashboardPost', { layout: 'authorizedPost', isAuthorized: req.session.isAuthenticated, post: formattedPost});
+	} catch (err) {
+		console.log(err);
+		res.sendStatus(500);
+	}
+});
+
+router.get('/post/:id', async (req, res) => {
+	try {
+		const post = await sequelize.query(`select a.title, a.body, b.username from post a, user b where a.user_id = b.id and a.id = ${req.params.id}`,  { type: QueryTypes.SELECT });
+		const comments = await sequelize.query(`select a.body, b.username from comments a, user b where a.userId = b.id and postId = ${req.params.id}`, { type: QueryTypes.SELECT });
+		res.render('post', {layout: 'mainPost', isAuthorized: req.session.isAuthenticated, post: post[0], comments: comments});
 	} catch (err) {
 		console.log(err);
 		res.sendStatus(500);
