@@ -6,9 +6,8 @@ const { QueryTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 router.get('/', async (req, res) => {
-	const posts = await Post.findAll();
-	const formattedPosts = posts.map((post) => post.get({ plain: true}));
-	res.render('home', { layout: 'main', isAuthorized: req.session.isAuthenticated, posts: formattedPosts});
+	const posts = await sequelize.query(`select a.title, a.body, b.username from post a, user b where a.user_id = b.id`, { type: QueryTypes.SELECT });
+	res.render('home', { layout: 'main', isAuthorized: req.session.isAuthenticated, posts: posts});
 });
 
 router.get('/register', (req, res) => {
