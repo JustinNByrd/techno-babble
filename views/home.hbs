@@ -9,7 +9,7 @@
 		{{#if isAuthorized}}
 			<a href="dashboardPost/{{this.id}}">{{this.title}}</a> By: {{this.username}}
 		{{else}}
-			<a href="post/{{this.id}}">{{this.title}}</a> By: {{this.username}}
+			<a href="post/{{this.id}}"></a><a href="post/{{this.id}}">{{this.title}}</a> By: {{this.username}}
 		{{/if}}
 		<p class="userPost">{{this.body}}</p>
 		<hr>
