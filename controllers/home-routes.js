@@ -45,9 +45,9 @@ router.get('/dashboard', async (req, res) => {
 
 router.get('/dashboardPost/:id', async (req, res) => {
 	try {
-		const post = await Post.findOne({where: {id: req.params.id}});
-		const formattedPost = post.get({plain: true});
-		res.render('dashboardPost', { layout: 'authorizedPost', isAuthorized: req.session.isAuthenticated, post: formattedPost});
+		const post = await sequelize.query(`select a.title, a.body, b.username from post a, user b where a.user_id = b.id and a.id = ${req.params.id}`,  { type: QueryTypes.SELECT });
+		const comments = await sequelize.query(`select a.body, b.username from comments a, user b where a.userId = b.id and postId = ${req.params.id}`, { type: QueryTypes.SELECT });
+		res.render('dashboardPost', { layout: 'authorizedPost', isAuthorized: req.session.isAuthenticated, post: post[0], comments: comments});
 	} catch (err) {
 		console.log(err);
 		res.sendStatus(500);

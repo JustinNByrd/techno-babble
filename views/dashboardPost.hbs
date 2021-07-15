@@ -3,9 +3,14 @@
 	{{> navigation isAuthorized=isAuthorized }}
 </header>
 
-<h3>{{post.title}}</h3>
+<h3>{{post.title}}</h3><p>By: {{post.username}}</p>
+
 {{post.body}}
 <hr>
+{{#each comments}}
+	<h4>By: {{this.username}}</h4>
+	<p>{{this.body}}</p>
+{{/each}}
 <textarea id="postComment" placeholder="Comment"></textarea>
 <button id="newCommentSubmit">Submit</button>
 
